@@ -4,7 +4,7 @@ const cors = require('cors');
 
 // Middleware to parse JSON requests
 app.use(express.json());
-const allowedOrigins = ['https://email-classifier-project-client.vercel.app', 'http://localhost:3001'];
+const allowedOrigins = ['https://bajajfinserv-63fb-97wuwlta7-aadinirs-projects.vercel.app/', 'http://localhost:3001'];
 
 app.use(cors({
     origin: allowedOrigins,
