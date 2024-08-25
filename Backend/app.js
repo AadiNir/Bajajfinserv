@@ -4,8 +4,13 @@ const cors = require('cors');
 
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use(cors());
-app.get('/', (req, res) => {
+const allowedOrigins = ['https://email-classifier-project-client.vercel.app', 'http://localhost:3001'];
+
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true ,
+    optionsSuccessStatus: 200
+  }));app.get('/', (req, res) => {
     res.json("hello world" );
 });
 // Helper function to process the data
