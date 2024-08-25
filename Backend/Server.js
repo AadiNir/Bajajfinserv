@@ -5,7 +5,9 @@ const cors = require('cors');
 // Middleware to parse JSON requests
 app.use(express.json());
 app.use(cors());
-
+app.get('/', (req, res) => {
+    res.json("hello world" );
+});
 // Helper function to process the data
 const processData = (data) => {
     let numbers = [];
