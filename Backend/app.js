@@ -3,18 +3,14 @@ const cors = require('cors');
 const app = express();
 
 // List of allowed origins
-const allowedOrigins = [
-    'https://bajajfinserv-63fb-flqsgxroy-aadinirs-projects.vercel.app', // Add your new frontend origin here
-    'https://bajajfinserv-licy-od2jgxy79-aadinirs-projects.vercel.app', // Existing backend origin
-    'http://localhost:3001' // Localhost for development
-];
+
 
 // CORS middleware configuration
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true ,
-    optionsSuccessStatus: 200
-  }));
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
 // Middleware to parse JSON requests
 app.use(express.json());
 
