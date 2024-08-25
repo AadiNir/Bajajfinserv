@@ -11,17 +11,10 @@ const allowedOrigins = [
 
 // CORS middleware configuration
 app.use(cors({
-    origin: function(origin, callback){
-        if(!origin) return callback(null, true); // Allow requests with no origin (like mobile apps, curl)
-        if(allowedOrigins.indexOf(origin) === -1){
-            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-            return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-    },
-    credentials: true // Allow credentials if needed
-}));
-
+    origin: allowedOrigins,
+    credentials: true ,
+    optionsSuccessStatus: 200
+  }));
 // Middleware to parse JSON requests
 app.use(express.json());
 
