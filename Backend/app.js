@@ -5,10 +5,11 @@ const cors = require('cors');
 // Middleware to parse JSON requests
 app.use(express.json());
 const allowedOrigins = [
-    'https://bajajfinserv-63fb-git-main-aadinirs-projects.vercel.app',
-    'https://bajajfinserv-63fb-1id5iue7j-aadinirs-projects.vercel.app',
+    'https://bajajfinserv-63fb-97wuwlta7-aadinirs-projects.vercel.app',
+    'https://bajajfinserv-licy-od2jgxy79-aadinirs-projects.vercel.app',
     'http://localhost:3001'
 ];
+
 
 // CORS middleware configuration
 app.use(cors({
