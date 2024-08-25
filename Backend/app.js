@@ -6,11 +6,8 @@ const cors = require('cors');
 app.use(express.json());
 const allowedOrigins = ['https://bajajfinserv-63fb-97wuwlta7-aadinirs-projects.vercel.app/', 'http://localhost:3001'];
 
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true ,
-    optionsSuccessStatus: 200
-  }));app.get('/', (req, res) => {
+app.use(cors());
+  app.get('/', (req, res) => {
     res.json("hello world" );
 });
 // Helper function to process the data
