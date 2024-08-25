@@ -16,7 +16,7 @@ const App = () => {
             console.log('Sending Data:', jsonData);
             const parsedData = JSON.parse(jsonData);
             console.log('Parsed Data:', parsedData);
-            const res = await axios.post('https://bajajfinserv-licy-od2jgxy79-aadinirs-projects.vercel.app/bfhl', { data: parsedData });
+            const res = await axios.post('https://bajajfinserv-5nvzsto6l-aadinirs-projects.vercel.app/bfhl', { data: parsedData });
             setResponse(res.data);
             setError('');
         } catch (err) {
