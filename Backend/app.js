@@ -4,12 +4,24 @@ const cors = require('cors');
 
 // Middleware to parse JSON requests
 app.use(express.json());
-const allowedOrigins = ['https://bajajfinserv-63fb-97wuwlta7-aadinirs-projects.vercel.app/', 'http://localhost:3001'];
+const allowedOrigins = [
+    'https://bajajfinserv-63fb-git-main-aadinirs-projects.vercel.app',
+    'https://bajajfinserv-63fb-1id5iue7j-aadinirs-projects.vercel.app',
+    'http://localhost:3001'
+];
 
-app.use(cors());
-  app.get('/', (req, res) => {
-    res.json("hello world" );
-});
+// CORS middleware configuration
+app.use(cors({
+    origin: function(origin, callback){
+        // Allow requests with no origin like mobile apps or curl requests
+        if(!origin) return callback(null, true);
+        if(allowedOrigins.indexOf(origin) === -1){
+            var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}));
 // Helper function to process the data
 const processData = (data) => {
     let numbers = [];
