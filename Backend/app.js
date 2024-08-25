@@ -1,51 +1,31 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
+const app = express();
 
-// Middleware to parse JSON requests
-app.use(express.json());
+// List of allowed origins
 const allowedOrigins = [
-    'https://bajajfinserv-63fb-97wuwlta7-aadinirs-projects.vercel.app',
-    'https://bajajfinserv-licy-od2jgxy79-aadinirs-projects.vercel.app',
-    'http://localhost:3001'
+    'https://bajajfinserv-63fb-flqsgxroy-aadinirs-projects.vercel.app', // Add your new frontend origin here
+    'https://bajajfinserv-licy-od2jgxy79-aadinirs-projects.vercel.app', // Existing backend origin
+    'http://localhost:3001' // Localhost for development
 ];
-
 
 // CORS middleware configuration
 app.use(cors({
     origin: function(origin, callback){
-        // Allow requests with no origin like mobile apps or curl requests
-        if(!origin) return callback(null, true);
+        if(!origin) return callback(null, true); // Allow requests with no origin (like mobile apps, curl)
         if(allowedOrigins.indexOf(origin) === -1){
-            var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
             return callback(new Error(msg), false);
         }
         return callback(null, true);
-    }
+    },
+    credentials: true // Allow credentials if needed
 }));
-// Helper function to process the data
-const processData = (data) => {
-    let numbers = [];
-    let alphabets = [];
-    let highestLowercaseAlphabet = null;
 
-    data.forEach(item => {
-        if (!isNaN(item)) {
-            numbers.push(item);
-        } else if (/^[a-zA-Z]$/.test(item)) {
-            alphabets.push(item);
-            if (/[a-z]/.test(item)) {
-                if (!highestLowercaseAlphabet || item > highestLowercaseAlphabet) {
-                    highestLowercaseAlphabet = item;
-                }
-            }
-        }
-    });
+// Middleware to parse JSON requests
+app.use(express.json());
 
-    return { numbers, alphabets, highestLowercaseAlphabet: highestLowercaseAlphabet || "" };
-};
-
-// POST route to handle input and return processed data
+// Example POST route
 app.post('/bfhl', (req, res) => {
     console.log('Request Body:', req.body);
 
@@ -68,13 +48,7 @@ app.post('/bfhl', (req, res) => {
     });
 });
 
-
-// GET route to return operation_code
-app.get('/bfhl', (req, res) => {
-    res.json({ operation_code: 1 });
-});
-
 // Start the server
 app.listen(3001, () => {
-    console.log(`Server running on port `);
+    console.log(`Server running on port 3001`);
 });
